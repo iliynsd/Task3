@@ -6,7 +6,14 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("It's a chat bot");
+            var chatBot = new ChatBot();
+
+            do
+            {
+                var cmd = Console.ReadLine();
+                chatBot.AnswerChatBot(cmd);
+            } while (true);
         }
     }
 }
