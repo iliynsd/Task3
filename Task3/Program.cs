@@ -19,9 +19,9 @@ namespace Task3
                 }
                 else
                 {
-                    Console.WriteLine(chatBot.AnswerChatBot(cmd));
+                    Console.WriteLine(chatBot.Answer(cmd));
                 }
-            } while (!chatBot.IsStop(chatBot.AnswerChatBot(cmd)));
+            } while (!chatBot.IsStop(cmd));
         }
     }
 }
