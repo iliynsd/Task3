@@ -8,12 +8,20 @@ namespace Task3
         {
             Console.WriteLine("It's a chat bot");
             var chatBot = new ChatBot();
-
-            do
-            {
-                var cmd = Console.ReadLine();
-                chatBot.AnswerChatBot(cmd);
-            } while (true);
+            string cmd;
+            do 
+            { 
+                Console.WriteLine("Enter command or -help to see bot commands"); 
+                cmd = Console.ReadLine();
+                if (cmd == "-help")
+                {
+                    chatBot.GetNotUsedCommands().ForEach(Console.WriteLine);
+                }
+                else
+                {
+                    Console.WriteLine(chatBot.AnswerChatBot(cmd));
+                }
+            } while (!chatBot.IsStop(chatBot.AnswerChatBot(cmd)));
         }
     }
 }
