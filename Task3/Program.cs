@@ -6,7 +6,11 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var calc = new Calculator();
+            Console.WriteLine("Sum = " + calc.Calculate(5,9,"+"));
+            Console.WriteLine("Difference = " + calc.Calculate(5,9,"-"));
+            Console.WriteLine("Multiply = " + calc.Calculate(5,9,"*"));
+            Console.WriteLine("Divide = " + calc.Calculate(5,9,"/"));
         }
     }
 }
