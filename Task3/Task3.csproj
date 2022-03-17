@@ -5,4 +5,11 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\botConfig.xml" />
+      <EmbeddedResource Include="Resources\botConfig.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+    </ItemGroup>
+
 </Project>

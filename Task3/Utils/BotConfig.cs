@@ -1,41 +1,39 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using Task3.Application;
 
 namespace Task3.Utils
 {
     public static class BotConfig
     {
-        private static string PathToBotSettings => Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Resources\\botConfig.xml"));
-
-        public static List<List<string>> SetCommands()
+        public static List<Command> SetCommands()
         {
-            List<List<string>> commands = new List<List<string>>();
+            List<Command> correctInputs = new List<Command>();
             
             foreach (var command in GetCommands())
             {
-                var commandNames = command.Elements().Select(i => i.Name.LocalName.Replace('_',' ')).ToList();
-                commands.Add(commandNames);
+                var commands = command.Elements().Select(i => i.Name.LocalName.Replace('_',' ')).ToList();
+                correctInputs.Add(new Command(){CommandName = command.Name.LocalName, CorrectInputs = commands});
             }
 
-            return commands;
+            return correctInputs;
         }
 
-        public static List<List<string>> SetAnswers()
+        public static List<Command> SetAnswers()
         {
-            List<List<string>> answers = new List<List<string>>();
+            List<Command> answers = new List<Command>();
             
             foreach (var command in GetCommands())
             {
-                var answerNames = command.Elements().Select(i => i.Value).ToList();
-                answers.Add(answerNames);
+                var commands = command.Elements().ToList().FindAll(i => i.Value != String.Empty).Select(i => i.Value).ToList();
+                answers.Add(new Command(){CommandName = command.Name.LocalName, CorrectInputs = commands});
             }
 
             return answers;
         }
         
-        private static IEnumerable<XElement> GetCommands() => XDocument.Load(PathToBotSettings).Element("commands")?.Elements();
+        private static IEnumerable<XElement> GetCommands() => XDocument.Load("Resources\\botConfig.xml").Element("commands")?.Elements();
     }
 }

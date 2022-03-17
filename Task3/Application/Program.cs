@@ -15,11 +15,11 @@ namespace Task3
                 cmd = Console.ReadLine();
                 if (cmd == "-help")
                 {
-                    chatBot.GetNotUsedCommands().ForEach(Console.WriteLine);
+                    chatBot.GetCommands().ForEach(Console.WriteLine);
                 }
                 else
                 {
-                    Console.WriteLine(chatBot.Answer(cmd));
+                    Console.WriteLine(chatBot.GetAnswer(cmd));
                 }
             } while (!chatBot.IsStop(cmd));
         }
